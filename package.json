@@ -1,0 +1,19 @@
+{
+  "name": "dlg-shortner",
+  "version": "1.0.0",
+  "description": "a url shortner made with React, .Net Core 3.1 and deployed to a container on Heroku",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dorlugasigal/DLG-Shrotner.git"
+  },
+  "author": "Dor Lugasi-Gal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dorlugasigal/DLG-Shrotner/issues"
+  },
+  "homepage": "https://github.com/dorlugasigal/DLG-Shrotner#readme"
+}
