@@ -30,6 +30,7 @@ namespace DLG_Shortner
                 sp.GetRequiredService<IOptions<ShorterUrlDatabaseSettings>>().Value);
             services.AddControllersWithViews();
 
+            services.AddResponseCaching();
 
             services.AddSingleton<ShortUrlService>();
 
@@ -38,6 +39,7 @@ namespace DLG_Shortner
             {
                 configuration.RootPath = "ClientApp/build";
             });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,6 +59,7 @@ namespace DLG_Shortner
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
+            app.UseResponseCaching();
 
             app.UseRouting();
 

@@ -14,10 +14,6 @@ namespace DLG_Shortner.Services
             var database = client.GetDatabase(settings.DatabaseName);
 
             _shortUrls = database.GetCollection<ShortUrl>(settings.UrlsCollectionName);
-
-            var notificationLogBuilder = Builders<ShortUrl>.IndexKeys;
-            var indexModel = new CreateIndexModel<ShortUrl>(notificationLogBuilder.Ascending(x => x.Slug));
-            _shortUrls.Indexes.CreateOne(indexModel);
         }
 
         public List<ShortUrl> Get() =>

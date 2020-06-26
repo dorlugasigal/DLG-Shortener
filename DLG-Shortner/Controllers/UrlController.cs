@@ -11,7 +11,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DLG_Shortner.Controllers
 {
-    [Route("api/[controller]")]
+    [ResponseCache(Duration = 60, Location = ResponseCacheLocation.Any)]
+    [Route("/url/")]
     [ApiController]
     public class UrlController : ControllerBase
     {
@@ -45,20 +46,33 @@ namespace DLG_Shortner.Controllers
         [HttpPost]
         public IActionResult Create([FromBody]ShortUrl shortUrl)
         {
-            var url = _shortUrlService.Get(shortUrl.Slug);
-            if (url != null)
+            if (!string.IsNullOrEmpty(shortUrl.Slug))
             {
-                return Conflict($"Slug '{url.Slug}' in use");
+                var url = _shortUrlService.Get(shortUrl.Slug);
+                if (url != null)
+                {
+                    return Conflict($"Slug '{url.Slug}' is in use");
+                }
             }
 
             if (string.IsNullOrEmpty(shortUrl.Slug))
             {
-                Xeger xeger = new Xeger("[a-z0-9]{5}", new Random());
+                var xeger = new Xeger("[a-z0-9]{5}", new Random());
                 shortUrl.Slug = xeger.Generate();
             }
-            _shortUrlService.Create(shortUrl);
-            return Ok();
-        }
 
+            shortUrl.Slug = shortUrl.Slug.ToLower();
+
+            try
+            {
+                var res = _shortUrlService.Create(shortUrl);
+                return Ok(res);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return StatusCode(500);
+            }
+        }
     }
 }
