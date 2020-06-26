@@ -1,10 +1,13 @@
+using AutoMapper;
+using DLG_Shortner.Models;
+using DLG_Shortner.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 
 namespace DLG_Shortner
 {
@@ -20,8 +23,15 @@ namespace DLG_Shortner
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<ShorterUrlDatabaseSettings>(
+                Configuration.GetSection(nameof(ShorterUrlDatabaseSettings)));
 
+            services.AddSingleton<IShorterUrlDatabaseSettings>(sp =>
+                sp.GetRequiredService<IOptions<ShorterUrlDatabaseSettings>>().Value);
             services.AddControllersWithViews();
+
+
+            services.AddSingleton<ShortUrlService>();
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
