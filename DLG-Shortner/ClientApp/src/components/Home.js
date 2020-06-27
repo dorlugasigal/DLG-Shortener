@@ -18,9 +18,8 @@ export const Home = () => {
 
     const onSubmit = async (data) => {
         setLoading(true)
-        data.url = data.url.replace(/^https:\/\//i, 'http://')
         var res = await urlApi.post("", data)
-        const newUrl = `https://dlg-shortner.herokuapp.com/u/${res.data.slug}`;
+        const newUrl = `http://dlg-shortner.herokuapp.com/u/${res.data.slug}`;
         setResult(newUrl);
         navigator.clipboard.writeText(newUrl)
         NotificationManager.success("Copied to clipboard", "Woohoo!")
