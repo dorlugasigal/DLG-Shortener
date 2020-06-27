@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import queryString from 'query-string';
+import classes from "./styles/error.module.css"
 
 export const Error = (props) => {
     const [slug, setSlug] = useState("")
@@ -12,7 +13,7 @@ export const Error = (props) => {
     }, [props])
 
     return (
-        <div>
+        <div className={classes.errorDiv}>
             {slug} NOT FOUND
         </div >
     )

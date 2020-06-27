@@ -3,6 +3,7 @@ import urlApi from "../api/urlApi"
 import { Helmet } from "react-helmet";
 import { useForm } from "react-hook-form";
 import { NotificationManager } from 'react-notifications';
+import { styles } from "./styles/home.module.css"
 
 export const Home = () => {
     const { register, errors, handleSubmit } = useForm();
