@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using DLG_Shortner.Models;
 using MongoDB.Driver;
 
@@ -10,7 +11,8 @@ namespace DLG_Shortner.Services
 
         public ShortUrlService(IShorterUrlDatabaseSettings settings)
         {
-            var client = new MongoClient(settings.ConnectionString);
+            var connStr = Environment.GetEnvironmentVariable("MONGO_CONNECTION_STRING");
+            var client = new MongoClient(connStr);
             var database = client.GetDatabase(settings.DatabaseName);
 
             _shortUrls = database.GetCollection<ShortUrl>(settings.UrlsCollectionName);

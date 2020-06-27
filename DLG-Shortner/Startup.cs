@@ -28,6 +28,7 @@ namespace DLG_Shortner
 
             services.AddSingleton<IShorterUrlDatabaseSettings>(sp =>
                 sp.GetRequiredService<IOptions<ShorterUrlDatabaseSettings>>().Value);
+
             services.AddControllersWithViews();
 
             services.AddResponseCaching();

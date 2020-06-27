@@ -19,7 +19,6 @@ namespace DLG_Shortner.Controllers
         private readonly ShortUrlService _shortUrlService;
 
         public UrlController(ShortUrlService shortUrlService)
-
         {
             _shortUrlService = shortUrlService;
         }

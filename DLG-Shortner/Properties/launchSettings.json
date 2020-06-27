@@ -19,6 +19,7 @@
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
+        "MONGO_CONNECTION_STRING": "mongodb+srv://userName:XDQmUlcpX0ML7rei@dlg-shortner.uw6jr.mongodb.net/short-urls?retryWrites=true&w=majority",
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "applicationUrl": "https://localhost:5001;http://localhost:5000"
