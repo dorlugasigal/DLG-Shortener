@@ -33,7 +33,7 @@ namespace DLG_Shortner.Controllers
 
             var shortUrl = _shortUrlService.Get(slug);
 
-            return Redirect(shortUrl == null ? $"https://localhost:5001/err?slug={shortUrl.Url}" : shortUrl.Url);
+            return Redirect(shortUrl == null ? $"https://dlg-shortner.herokuapp.com/err?slug={slug}" : shortUrl.Url);
         }
 
         [HttpPost]

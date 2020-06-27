@@ -3,6 +3,7 @@ import { Route } from 'react-router';
 import { Layout } from './components/Layout';
 import { Home } from './components/Home';
 import { Error } from './components/Error';
+import 'react-notifications/lib/notifications.css';
 
 import './custom.css'
 
