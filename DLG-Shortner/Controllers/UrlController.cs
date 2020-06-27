@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace DLG_Shortner.Controllers
 {
     [ResponseCache(Duration = 60, Location = ResponseCacheLocation.Any)]
-    [Route("/url/")]
+    [Route("/u")]
     [ApiController]
     public class UrlController : ControllerBase
     {
@@ -23,23 +23,17 @@ namespace DLG_Shortner.Controllers
             _shortUrlService = shortUrlService;
         }
 
-        // GET: api/Url
-        [HttpGet]
-        public ActionResult<List<ShortUrl>> Get() => _shortUrlService.Get();
-
         [HttpGet("{slug}")]
         public ActionResult<ShortUrl> Get(string slug)
         {
-            //  return Redirect("https://weather.com/he-IL/weather/today/l/ISXX0010:1:IS");
+            if (slug == null)
+            {
+                return NoContent();
+            }
 
             var shortUrl = _shortUrlService.Get(slug);
 
-            if (shortUrl == null)
-            {
-                return NotFound();
-            }
-
-            return shortUrl;
+            return Redirect(shortUrl == null ? $"https://localhost:5001/err?slug={shortUrl.Url}" : shortUrl.Url);
         }
 
         [HttpPost]
