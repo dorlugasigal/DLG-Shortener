@@ -20,10 +20,15 @@ export const Home = () => {
     const onSubmit = async (data) => {
         setLoading(true)
         var res = await urlApi.post("", data)
-        const newUrl = `http://dlg-shortner.herokuapp.com/u/${res.data.slug}`;
+        const newUrl = `http://dlg-sh.herokuapp.com/u/${res.data.slug}`;
         setResult(newUrl);
-        navigator.clipboard.writeText(newUrl)
-        NotificationManager.success("Copied to clipboard", "Woohoo!")
+        try {
+            navigator.clipboard.writeText(newUrl)
+            NotificationManager.success("Copied to clipboard", "Woohoo!")
+        }
+        catch   {
+
+        }
         setLoading(false)
     }
 
@@ -56,7 +61,7 @@ export const Home = () => {
             </form>
             {loading && <div>Loading</div>}
             {result && <div class="result">
-                Here you go: <span class="result-link">{result}</span>
+                Here you go: <a href={result} className="result-link">{result}</a>
             </div>}
         </div >
     )
