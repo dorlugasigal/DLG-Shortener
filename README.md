@@ -12,9 +12,10 @@
   </a>
 </p>
 
-> Dlg-Shortnera url shortner made with React, .Net Core 3.1 and dep
+> Dlg-Shortner is a url shortner made with React, .Net Core 3.1 and deployed to Heroku.
+made to test and learn .Net Nuget Packages such as MediatR, FluentValidation and Polly
 
-### 🏠 [Homepage](loyed to a container on Heroku)
+### 🏠 [Homepage](https://github.com/dorlugasigal/DLG-Shortner/)
 
 ### ✨ [Demo](https://dlg-sh.herokuapp.com/)
 
@@ -22,12 +23,6 @@
 
 ```sh
 dotnet run
-```
-
-## Run tests
-
-```sh
-npm run test
 ```
 
 ## Author
@@ -39,7 +34,7 @@ npm run test
 
 ## 🤝 Contributing
 
-Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/dorlugasigal/DLG-Shrotner/issues). You can also take a look at the [contributing guide](https://github.com/dorlugasigal/DLG-Shrotner/blob/master/CONTRIBUTING.md).
+Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/dorlugasigal/DLG-Shrotner/issues).
 
 ## Show your support
 
