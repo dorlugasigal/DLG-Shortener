@@ -1,4 +1,4 @@
-<h1 align="center">Welcome to Dlg-Shortner 👋</h1>
+<h1 align="center">Welcome to Dlg-Shortener 👋</h1>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
   <a href="https://github.com/dorlugasigal/DLG-Shrotner#readme" target="_blank">
@@ -12,7 +12,7 @@
   </a>
 </p>
 
-> Dlg-Shortnera url shortner made with React, .Net Core 3.1 and dep
+> Dlg-Shortner a url shortner made with React, .Net Core 3.1 and dep
 
 ### 🏠 [Homepage](loyed to a container on Heroku)
 
@@ -34,8 +34,8 @@ npm run test
 
 👤 **Dor Lugasi-Gal**
 
-* Website: https://dorlugasigal.netlify.com/
-* Github: [@dorlugasigal](https://github.com/dorlugasigal)
+- Website: https://dorlugasigal.netlify.com/
+- Github: [@dorlugasigal](https://github.com/dorlugasigal)
 
 ## 🤝 Contributing
 
@@ -50,5 +50,6 @@ Give a ⭐️ if this project helped you!
 Copyright © 2020 [Dor Lugasi-Gal](https://github.com/dorlugasigal).<br />
 This project is [ISC](https://github.com/dorlugasigal/DLG-Shrotner/blob/master/LICENSE) licensed.
 
-***
+---
+
 _This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_

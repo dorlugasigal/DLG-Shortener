@@ -16,7 +16,5 @@
     "url": "https://github.com/dorlugasigal/DLG-Shrotner/issues"
   },
   "homepage": "https://github.com/dorlugasigal/DLG-Shrotner#readme",
-  "dependencies": {
-    "query-string": "^6.13.1"
-  }
+  "dependencies": {}
 }
