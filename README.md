@@ -12,8 +12,9 @@
   </a>
 </p>
 
-> Dlg-Shortner is a url shortner made with React, .Net Core 3.1 and deployed to Heroku.
-made to test and learn .Net Nuget Packages such as MediatR, FluentValidation and Polly
+> Dlg-Shortner is a SPA url shortner websuite made with React+.Net Core 3.1 and deployed to Heroku in a Docker container.
+purpose of this project is to test my abbilities and learn .Net Nuget Packages such as MediatR as a CQRS implementation, FluentValidation and Polly 
+
 
 ### 🏠 [Homepage](https://github.com/dorlugasigal/DLG-Shortner/)
 
