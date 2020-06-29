@@ -1,7 +1,7 @@
 {
-  "name": "dlg-shortner",
+  "name": "dlg-shortener",
   "version": "1.0.0",
-  "description": "a url shortner made with React, .Net Core 3.1 and deployed to a container on Heroku",
+  "description": "a url shortener made with React, .Net Core 3.1 and deployed to a container on Heroku",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

@@ -8,13 +8,14 @@
     <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
   </a>
   <a href="https://github.com/dorlugasigal/DLG-Shrotner/blob/master/LICENSE" target="_blank">
-    <img alt="License: ISC" src="https://img.shields.io/github/license/dorlugasigal/Dlg-Shortner" />
+    <img alt="License: ISC" src="https://img.shields.io/github/license/dorlugasigal/Dlg-Shortener" />
   </a>
 </p>
 
-> Dlg-Shortner a url shortner made with React, .Net Core 3.1 and dep
+> Dlg-Shortener is a SPA url shortener websuite made with React+.Net Core 3.1 and deployed to Heroku in a Docker container.
+> purpose of this project is to test my abbilities and learn .Net Nuget Packages such as MediatR as a CQRS implementation, FluentValidation and Polly
 
-### 🏠 [Homepage](loyed to a container on Heroku)
+### 🏠 [Homepage](https://github.com/dorlugasigal/DLG-Shortener/)
 
 ### ✨ [Demo](https://dlg-sh.herokuapp.com/)
 
@@ -22,12 +23,6 @@
 
 ```sh
 dotnet run
-```
-
-## Run tests
-
-```sh
-npm run test
 ```
 
 ## Author
@@ -39,7 +34,7 @@ npm run test
 
 ## 🤝 Contributing
 
-Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/dorlugasigal/DLG-Shrotner/issues). You can also take a look at the [contributing guide](https://github.com/dorlugasigal/DLG-Shrotner/blob/master/CONTRIBUTING.md).
+Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/dorlugasigal/DLG-Shrotner/issues).
 
 ## Show your support
 

@@ -1,5 +1,5 @@
 FROM node:10.13.0-alpine as node
-WORKDIR DLG-Shortner/ClientApp
+WORKDIR DLG-Shortener/ClientApp
 COPY public ./public
 COPY src/index.jsx ./src/index.jsx
 COPY package*.json ./
