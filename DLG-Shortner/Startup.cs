@@ -1,6 +1,7 @@
 using AutoMapper;
 using DLG_Shortner.Models;
 using DLG_Shortner.Services;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
@@ -25,15 +26,12 @@ namespace DLG_Shortner
         {
             services.Configure<ShorterUrlDatabaseSettings>(
                 Configuration.GetSection(nameof(ShorterUrlDatabaseSettings)));
-
             services.AddSingleton<IShorterUrlDatabaseSettings>(sp =>
                 sp.GetRequiredService<IOptions<ShorterUrlDatabaseSettings>>().Value);
-
             services.AddControllersWithViews();
-
             services.AddResponseCaching();
-
-            services.AddSingleton<ShortUrlService>();
+            services.AddSingleton<IShortUrlRepository<ShortUrl>, ShortUrlRepository>();
+            services.AddMediatR(typeof(Startup));
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

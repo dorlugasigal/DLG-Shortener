@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using DLG_Shortner.Commands;
 using DLG_Shortner.Models;
-using DLG_Shortner.Services;
+using DLG_Shortner.Queries;
 using Fare;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,56 +18,45 @@ namespace DLG_Shortner.Controllers
     [ApiController]
     public class UrlController : ControllerBase
     {
-        private readonly ShortUrlService _shortUrlService;
+        private readonly IMediator _mediator;
 
-        public UrlController(ShortUrlService shortUrlService)
+        public UrlController(IMediator mediator)
         {
-            _shortUrlService = shortUrlService;
+            _mediator = mediator;
         }
 
         [HttpGet("{slug}")]
-        public ActionResult<ShortUrl> Get(string slug)
+        public async Task<IActionResult> GetUrlBySlug(string slug)
         {
+            var query = new GetUrlBySlugQuery(slug);
+
             if (slug == null)
             {
                 return NoContent();
             }
 
-            var shortUrl = _shortUrlService.Get(slug);
+            var result = await _mediator.Send(query);
 
-            return Redirect(shortUrl == null ? $"https://dlg-sh.herokuapp.com/err?slug={slug}" : shortUrl.Url);
+            return Redirect(result);
         }
 
         [HttpPost]
-        public IActionResult Create([FromBody]ShortUrl shortUrl)
+        public async Task<IActionResult> CreateNewShortUrl([FromBody]ShortUrl shortUrl)
         {
-            if (!string.IsNullOrEmpty(shortUrl.Slug))
-            {
-                var url = _shortUrlService.Get(shortUrl.Slug);
-                if (url != null)
-                {
-                    return Conflict($"Slug '{url.Slug}' is in use");
-                }
-            }
-
-            if (string.IsNullOrEmpty(shortUrl.Slug))
-            {
-                var xeger = new Xeger("[a-z0-9]{5}", new Random());
-                shortUrl.Slug = xeger.Generate();
-            }
-
-            shortUrl.Slug = shortUrl.Slug.ToLower();
-
+            var command = new CreateNewShortUrlCommand(shortUrl);
             try
             {
-                var res = _shortUrlService.Create(shortUrl);
-                return Ok(res);
+                var result = await _mediator.Send(command);
+                return result.IsConflict
+                    ? (IActionResult)Conflict(result.ConflictMessage)
+                    : Ok(result.ShortUrl);
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
                 return StatusCode(500);
             }
+
         }
     }
 }
