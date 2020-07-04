@@ -1,6 +1,9 @@
 using AutoMapper;
+using DLG_Shortener.Extensions;
 using DLG_Shortener.Models;
+using DLG_Shortener.PipelineBehaviors;
 using DLG_Shortener.Services;
+using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -32,6 +35,8 @@ namespace DLG_Shortener
             services.AddResponseCaching();
             services.AddSingleton<IShortUrlRepository<ShortUrl>, ShortUrlRepository>();
             services.AddMediatR(typeof(Startup));
+            services.AddValidatorsFromAssembly(typeof(Startup).Assembly);
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -46,11 +51,14 @@ namespace DLG_Shortener
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                //app.UseDeveloperExceptionPage();
+                app.UseFluentValidationExceptionHandler();
+
             }
             else
             {
-                app.UseExceptionHandler("/Error");
+                //   app.UseExceptionHandler("/Error");
+                app.UseFluentValidationExceptionHandler();
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }

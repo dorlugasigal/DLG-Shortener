@@ -44,18 +44,11 @@ namespace DLG_Shortener.Controllers
         public async Task<IActionResult> CreateNewShortUrl([FromBody]ShortUrl shortUrl)
         {
             var command = new CreateNewShortUrlCommand(shortUrl);
-            try
-            {
-                var result = await _mediator.Send(command);
-                return result.IsConflict
-                    ? (IActionResult)Conflict(result.ConflictMessage)
-                    : Ok(result.ShortUrl);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return StatusCode(500);
-            }
+
+            var result = await _mediator.Send(command);
+            return result.IsConflict
+                ? (IActionResult)Conflict(result.ConflictMessage)
+                : Ok(result.ShortUrl);
 
         }
     }
