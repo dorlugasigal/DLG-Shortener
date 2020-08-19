@@ -1,18 +1,17 @@
-/* Provide sufficient contrast against white background */
-a {
-  color: #0366d6;
-}
-
-code {
-  color: #e01a76;
-}
-
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
-}
-
 body {
-  margin: 0 auto;
+    display: flex;
+    color: '#FFF';
+    height: 80vh;
+    margin-top: 25vh;
+    justify-content: center;
+    background: rgb(81, 62, 111);
+    background: radial-gradient(
+        circle,
+        rgba(81, 62, 111, 1) 0%,
+        rgba(45, 35, 61, 1) 100%
+    );
+    overflow-y: auto;
+
+    font-family: 'ProximaNova Regular', 'Helvetica Neue', 'Helvetica', 'Arial',
+        'sans-serif';
 }

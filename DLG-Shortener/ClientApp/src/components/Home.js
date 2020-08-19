@@ -3,7 +3,7 @@ import urlApi from "../api/urlApi"
 import { Helmet } from "react-helmet";
 import { useForm } from "react-hook-form";
 import { NotificationManager } from 'react-notifications';
-import { styles } from "./styles/home.module.css"
+import styles from "./styles/home.module.css"
 
 export const Home = () => {
     const { register, errors, handleSubmit } = useForm();
@@ -19,50 +19,56 @@ export const Home = () => {
 
     const onSubmit = async (data) => {
         setLoading(true)
-        var res = await urlApi.post("", data)
-        const newUrl = `http://dlg-sh.herokuapp.com/u/${res.data.slug}`;
-        setResult(newUrl);
         try {
-            navigator.clipboard.writeText(newUrl)
-            NotificationManager.success("Copied to clipboard", "Woohoo!")
-        }
-        catch   {
 
+            var res = await urlApi.post("", data)
+            const newUrl = `http://dlg-sh.herokuapp.com/u/${res.data.slug}`;
+            setResult(newUrl);
+            try {
+                navigator.clipboard.writeText(newUrl)
+                NotificationManager.success("Copied to clipboard", "Woohoo!")
+            }
+            catch (ex) {
+                console.log(ex)
+            }
+            setLoading(false)
         }
-        setLoading(false)
+        catch (err) {
+            if (err.message.includes("409")) {
+                NotificationManager.error("Slug already exists", "Oh no!")
+            }
+            setLoading(false)
+        }
     }
 
 
     return (
-        <div>
+        <div style={{ padding: "20px", display: "flex", flexDirection: "column", transition: "all 0.5s ease" }} >
             <Helmet>
                 <title>Short Urls!</title>
             </Helmet>
-            <div>
+            <div className={styles.title}>
                 Short Url for your personal use!
             </div>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form className={styles.formWrapper} onSubmit={handleSubmit(onSubmit)}>
                 <div>
-                    <div>Url</div>
-                    <input autocomplete="off" name="url" ref={register({ required: true, pattern: urlRegex })} />
-                    <div>
-                        {errors.url && errors.url.type === "required" && "url is required"}
-                        {errors.url && errors.url.type === "pattern" && "thats not a url"}
-                    </div>
+                    <input placeholder="https://example.com/" autocomplete="off" name="url" ref={register({ required: true, pattern: urlRegex })} />
                 </div>
                 <div>
-                    <div>Slug</div>
-                    <input autocomplete="off" name="slug" ref={register({ pattern: /^[a-z0-9]{0,5}$/i })} />
-                    <div>
-                        {errors.slug && "slug must be maximum 5 lowercase characters or numbers"}
-                    </div>
-                    <input type="submit" />
+                    <input placeholder="slug (optional)" autocomplete="off" name="slug" ref={register({ pattern: /^[a-z0-9]{0,5}$/i })} />
                 </div>
+                <input type="submit" />
             </form>
-            {loading && <div>Loading</div>}
-            {result && <div class="result">
-                Here you go: <a href={result} className="result-link">{result}</a>
-            </div>}
+
+            <div className={styles.messagesContainer} >
+                {loading && <div>Loading</div>}
+                {result && <div class="result">
+                    Here you go: <a href={result} className="result-link">{result}</a>
+                </div>}
+                {errors.url && errors.url.type === "required" && <div>url is required</div>}
+                {errors.url && errors.url.type === "pattern" && <div>thats not a url</div>}
+                {errors.slug && <div>slug must be maximum 5 lowercase characters or numbers</div>}
+            </div>
         </div >
     )
 
