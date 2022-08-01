@@ -17,7 +17,7 @@
 
 ### 🏠 [Homepage](https://github.com/dorlugasigal/DLG-Shortener/)
 
-### ✨ [Demo](https://dlg-sh.herokuapp.com/)
+### ✨ [Demo(Deprecated)](https://dlg-sh.herokuapp.com/)
 # the DB associated with this demo is no longer available.
 
 ## Usage
